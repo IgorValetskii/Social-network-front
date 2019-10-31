@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Users from "./components/UserList";
+import {BrowserRouter, Route, Link, Switch} from "react-router-dom";
+import createBrowserHistory from "history/createBrowserHistory"
+import UserForm from "./components/UserForm";
+import UserEditForm from "./components/UserEditForm";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const history = createBrowserHistory();
+
+
+class App extends React.Component {
+    render() {
+        return (
+
+            <BrowserRouter>
+                <div>
+                    <h1>Welcome to Superleague!</h1>
+                    <ul>
+                        <li><Link to="/users">Users</Link></li>
+                        <li><Link to="/contacts">Leagues</Link></li>
+                    </ul>
+                    <hr/>
+                    <Switch>
+                        <Route path="/users/add" exact component={UserForm}/>
+                        <Route path="/users/:id" exact component={UserEditForm}/>
+                        <Route path="/users" exact component={Users}/>
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        );
+    }
 }
+
 
 export default App;
