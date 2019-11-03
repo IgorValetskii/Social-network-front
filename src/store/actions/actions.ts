@@ -1,47 +1,29 @@
-import {ACTION_CHANGE_SURNAME,ACTION_CHANGE_NAME} from '../../index'
-import {ACTION_GET_DEFAULT_INFO,ACTION_SET_EDIT_USER} from "../userConstants/userConstants";
-import UsersData from "../../data/UsersData";
-import {UserData} from '../../data/UsersData';
+import {ACTION_GET_DEFAULT_INFO, ACTION_GET_LIST_USERS} from "../userConstants/userConstants";
+import axios from "axios";
 
-export const getAsyncUserInfo = () =>{
-    return (dispatch:any) => {
-        setTimeout(() => {
-            console.log('THUNK');
-            dispatch({
-                type: ACTION_GET_DEFAULT_INFO,
-                payload: UserData
+
+export const getAsyncUsersList = () => {
+    return (dispatch: any) => {
+        return axios.get(`http://localhost:3010/users`)
+            .then(res => {
+                dispatch({
+                    type: ACTION_GET_LIST_USERS,
+                    payload: res.data
+                })
+                // console.log(res.data.forEach(i =>))
+                // res.data.forEach((i:any,arr:any) => console.log(i.firstName)  )
             })
-        }, 2000);
     }
 };
 
-const a = console.log('hello');
-
-export const setEditUser = () => {
-    return (dispatch:any) => {
-        setTimeout(() => {
-            console.log('THUNK');
-            dispatch({
-                type: ACTION_SET_EDIT_USER,
-                payload: a
+export const getAsyncUserInfo = () => {
+    return (dispatch: any) => {
+        return axios.get(`http://localhost:3010/users/5d9daa9fed1b960f48fd8a88`)
+            .then(res => {
+                dispatch({
+                    type: ACTION_GET_DEFAULT_INFO,
+                    payload: res.data
+                })
             })
-        }, 2000);
     }
 };
-
-
-export const changeName = (newName: any) => {
-    // console.log(newName);
-    return {
-        type: ACTION_CHANGE_NAME,
-        payload: newName
-    }
-};
-
-export const changeSurname = (newName: any) => {
-    return {
-        type: ACTION_CHANGE_SURNAME,
-        payload: newName
-    }
-};
-

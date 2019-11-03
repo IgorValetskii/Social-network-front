@@ -1,100 +1,62 @@
 import React from 'react';
-import UsersData from "../data/UsersData";
-import UserItem from "./UserItem";
 import {Link} from "react-router-dom";
+import {getAsyncUsersList} from "../store/actions/actions";
+import {connect} from "react-redux";
 
-class UserList extends React.Component<any>{
-    constructor(props:any){
-        super(props)
+interface State {
+    user123: any
+}
+
+class UserList extends React.Component<any, State> {
+    constructor(props: any) {
+        super(props);
     }
 
-    render(){
-        console.log(this.props);
+    componentDidMount(): void {
+        this.props.getUsersList();
+        // axios.get(`http://localhost:3010/users`)
+        //     .then(res => {
+        //         const users : any= res.data;
+        //         this.setState({ users});
+        //     })
+    }
+
+    render() {
+        // console.log(this.props);
+
+        const arrUsers = this.props.usersList.users;
+        // console.log(arrUsers);
+        // const {usersList} = this.props;
+        // console.log({usersList});
         return (
-
             <div>
-                <ul className="list-group">
-                    Users
-                    {UsersData.map(user => (
-
-                        <UserItem key={user.id}
-                                  user={{name: user.name, surname: user.surname, username: user.username, id: user.id}}/>
-                    ))}
-                </ul>
-
-                <Link to="/users/add">
-                    <button >Add User</button>
-            </Link>
+                <ol>
+                    {arrUsers.map((person: any) => <Link key={person._id} to={`/users/${person._id}`}>
+                        <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} </li>
+                    </Link>)}
+                </ol>
+                <button>Add User</button>
             </div>
-        );
+        )
     }
 }
 
+const mapStateToProps = (state: any) => (
+    {
+        usersList: state.userslist
+    }
+);
+
+const mapActionsToProps = (dispatch: any) => {
+    return {
+        getUsersList: () => {
+            dispatch(getAsyncUsersList())
+        }
+    };
+};
 
 
-export default UserList;
-
-//
-// export default UserList
-
-// const UserList = () => {
-//     function ShowForm() {
-//         alert('1')
-//     }
-//
-//     return (
-//         <div>
-//             <ul className="list-group">
-//                 Users
-//                 {UsersData.map(user => (
-//                     <UserItem key={user.id}
-//                               user={{name: user.name, surname: user.surname, username: user.username, id: user.id}}/>
-//                 ))}
-//             </ul>
-//
-//             <button onClick={()=>ShowForm()}>Add User</button>
-//         </div>
-//     );
-// }
+export default connect(mapStateToProps, mapActionsToProps)(UserList);
 
 
-// interface Props {
-//     value : any
-// }
-//
-// interface State {
-//     flags? : boolean
-//     tags?: string[]
-// }
-//
-//
-// class Users extends React.Component <State, any>{
-//     constructor(props:any){
-//         super(props);
-//     this.state = {
-//         flags : false
-//     }
-// }
-//
-// handleClick(){
-//         this.setState({
-//             flags: !this.state.flags
-//             }
-//         );
-// }
-//
-//
-// render() {
-//         let list;
-//         if (this.state.flags === true){
-//           list = <p>list of users</p>
-//         }
-//         return (
-//             <div>
-//                 <button onClick={()=> this.handleClick()}>Show users</button>
-//                 { console.log(this.state)}
-//                <div>{list}</div>
-//             </div>
-//         );
-//     }
-// }
+// export default UserList;

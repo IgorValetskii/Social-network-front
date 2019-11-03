@@ -4,21 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
-import {createStore, applyMiddleware, combineReducers, Reducer} from "redux";
+import {createStore, applyMiddleware, combineReducers} from "redux";
 import {userReducer} from "./store/reducers/userReducer";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {listReducer} from "./store/reducers/listReducer";
 
 
-export const ACTION_CHANGE_NAME = 'ACTION_CHANGE_NAME';
-export const ACTION_CHANGE_SURNAME = 'ACTION_CHANGE_SURNAME';
-
-
 export const rootReducer = combineReducers({
-    user: userReducer,
-    userslist : listReducer
-
+    userslist : listReducer,
+    user: userReducer
     });
 
 

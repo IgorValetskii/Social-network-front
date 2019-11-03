@@ -1,13 +1,25 @@
-import {ACTION_CHANGE_NAME, ACTION_CHANGE_SURNAME} from "../../index";
-import {ACTION_GET_DEFAULT_INFO, ACTION_SET_EDIT_USER} from "../userConstants/userConstants";
+import {ACTION_GET_DEFAULT_INFO} from "../userConstants/userConstants";
 
-const initialState: never[] = [];
+const initialState: any = {
+    firstName : 'name',
+    lastName: 'surname',
+    userName: 'username'
+
+};
 
 
 export const userReducer = (state = initialState, action: any) => {
+    console.log(state);
+    // console.log(action.payload);
+    // console.log(action.type);
     switch (action.type) {
         case ACTION_GET_DEFAULT_INFO:
-            return action.payload;
+            return {
+                ...state,
+               defaultinfo : action.payload
+            };
+        default:
+            // console.log('state')
+            return state
     }
-    return state;
 };

@@ -1,19 +1,16 @@
 import React from "react";
 import {Form, Input} from '@rocketseat/unform';
-import UsersData from "../data/UsersData";
 import {Link} from "react-router-dom";
 
 
-class UserForm extends React.Component <any> {
+class UserAddForm extends React.Component <any> {
     constructor(props: any) {
         super(props);
-
     }
 
     handleSubmit(data: any) {
         const id = Math.floor(Math.random() * 1000);
         data.id = id;
-        const newUser = UsersData.push(data);
     }
 
     render() {
@@ -35,5 +32,5 @@ class UserForm extends React.Component <any> {
     }
 }
 
-export default UserForm;
+export default UserAddForm;
 

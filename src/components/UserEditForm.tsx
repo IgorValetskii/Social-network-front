@@ -1,9 +1,8 @@
 import React from "react";
 import {Form, Input} from "@rocketseat/unform";
 import {Link} from "react-router-dom";
-import {getAsyncUserInfo, setEditUser} from "../store/actions/actions";
+import {getAsyncUserInfo} from "../store/actions/actions";
 import {connect} from "react-redux";
-import UserList from "./UserList";
 
 class UserEditForm extends React.Component<any> {
     constructor(props: any) {
@@ -12,10 +11,6 @@ class UserEditForm extends React.Component<any> {
     }
 
     componentDidMount(): void {
-        this.props.setEditUser()
-    }
-
-    componentWillMount(): void {
         this.props.getUserInfo();
     }
 
@@ -27,11 +22,11 @@ class UserEditForm extends React.Component<any> {
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         const initialData = {
-            name: this.props.user.name,
-            surname: this.props.user.surname,
-            username: this.props.user.username
+            name: this.props.user.firstName,
+            surname: this.props.user.lastName,
+            username: this.props.user.userName
         };
         return (
             <Form onSubmit={this.handleSubmit} initialData={initialData}>
@@ -51,18 +46,17 @@ class UserEditForm extends React.Component<any> {
     }
 }
 
-const putStateToProps = (state: any) => ({
+const mapStateToProps = (state: any) => ({
     user: state.user
 });
 
-const putActionsToProps = (dispatch: any) => {
+const mapActionsToProps = (dispatch: any) => {
     return {
         getUserInfo: () => {dispatch(getAsyncUserInfo())},
-        setEditUser: () => {dispatch(setEditUser())}
         // changeName1: bindActionCreators(changeName, dispatch),
         // changeSurname1: bindActionCreators(changeSurname, dispatch)
     };
 };
 
 
-export default connect(putStateToProps, putActionsToProps)(UserEditForm);
+export default connect(mapStateToProps, mapActionsToProps)(UserEditForm);
