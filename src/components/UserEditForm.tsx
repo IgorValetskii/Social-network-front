@@ -1,33 +1,45 @@
 import React from "react";
 import {Form, Input} from "@rocketseat/unform";
 import {Link} from "react-router-dom";
-import {getAsyncUserInfo} from "../store/actions/actions";
+import {getAsyncUserInfo,updateAsyncUserInfo} from "../store/actions/actions";
 import {connect} from "react-redux";
+
 
 class UserEditForm extends React.Component<any> {
     constructor(props: any) {
         super(props);
-
     }
 
     componentDidMount(): void {
-        this.props.getUserInfo();
+        // debugger;
+        console.log(this.props.match.params.id);
+        const ID = this.props.match.params.id;
+        this.props.getUserInfo(ID);
     }
 
-    handleSubmit() {
-    }
+    // componentDidUpdate(prevProps:any) {
+    //     // Популярный пример (не забудьте сравнить пропсы):
+    //     if (this.props.user.defaultInfo !== prevProps.user) {
+    //         console.log('CРаботал DIDUPDATE')
+    //     }
+    // }
 
-    changeInfoUser(){
+    handleSubmit(data:any) {
+        console.log(data);
 
     }
 
     render() {
         // console.log(this.props);
-        const initialData = {
-            name: this.props.user.firstName,
-            surname: this.props.user.lastName,
-            username: this.props.user.userName
-        };
+        // console.log(this.props);
+        let initialData:any;
+        if (this.props.user.defaultInfo){
+           initialData = {
+                name: this.props.user.defaultInfo.firstName ,
+                surname: this.props.user.defaultInfo.lastName ,
+                username: this.props.user.defaultInfo.userName
+            };
+        }
         return (
             <Form onSubmit={this.handleSubmit} initialData={initialData}>
                 <p>Firstname:</p>
@@ -37,7 +49,7 @@ class UserEditForm extends React.Component<any> {
                 <p>Username:</p>
                 <Input name="username"/>
 
-                <button type="submit" onClick={this.changeInfoUser}>Edit User</button>
+                <button type="submit">Edit User</button>
                 <Link to="/users">
                     <button>Return</button>
                 </Link>
@@ -52,11 +64,9 @@ const mapStateToProps = (state: any) => ({
 
 const mapActionsToProps = (dispatch: any) => {
     return {
-        getUserInfo: () => {dispatch(getAsyncUserInfo())},
-        // changeName1: bindActionCreators(changeName, dispatch),
-        // changeSurname1: bindActionCreators(changeSurname, dispatch)
+        getUserInfo: (ID:any) => {dispatch(getAsyncUserInfo(ID))},
+        updateUserInfo: (ID:any, ) => {dispatch(updateAsyncUserInfo(ID))}
     };
 };
-
 
 export default connect(mapStateToProps, mapActionsToProps)(UserEditForm);

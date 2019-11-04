@@ -1,19 +1,17 @@
 import React from 'react';
 import './App.css';
 import UserList from "./components/UserList";
-import {BrowserRouter, Route, Link, Switch} from "react-router-dom";
-// import createBrowserHistory from "history/createBrowserHistory"
+import {BrowserRouter, Route, Link, Switch,Router} from "react-router-dom";
 import UserAddForm from "./components/UserAddForm";
 import UserEditForm from "./components/UserEditForm";
-
-// const history = createBrowserHistory();
+import {createBrowserHistory} from 'history'
+const history = createBrowserHistory();
 
 
 class App extends React.Component {
     render() {
         return (
-
-            <BrowserRouter>
+            <Router history={history}>
                 <div>
                     <h1>Welcome to Superleague!</h1>
                     <ul>
@@ -27,7 +25,7 @@ class App extends React.Component {
                         <Route path="/users" exact component={UserList}/>
                     </Switch>
                 </div>
-            </BrowserRouter>
+            </Router>
         );
     }
 }

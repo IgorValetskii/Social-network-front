@@ -14,11 +14,6 @@ class UserList extends React.Component<any, State> {
 
     componentDidMount(): void {
         this.props.getUsersList();
-        // axios.get(`http://localhost:3010/users`)
-        //     .then(res => {
-        //         const users : any= res.data;
-        //         this.setState({ users});
-        //     })
     }
 
     render() {
@@ -31,9 +26,12 @@ class UserList extends React.Component<any, State> {
         return (
             <div>
                 <ol>
-                    {arrUsers.map((person: any) => <Link key={person._id} to={`/users/${person._id}`}>
-                        <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} </li>
-                    </Link>)}
+                    {arrUsers.map((person: any) =>
+                        <Link key={person._id} to={`/users/${person._id}`}>
+
+                            <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} </li>
+
+                        </Link>)}
                 </ol>
                 <button>Add User</button>
             </div>

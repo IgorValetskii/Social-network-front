@@ -1,4 +1,4 @@
-import {ACTION_GET_LIST_USERS, ACTION_SET_EDIT_USER} from "../userConstants/userConstants";
+import {ACTION_GET_LIST_USERS} from "../userConstants/userConstants";
 
 const defaultState : any = {
     users : []
