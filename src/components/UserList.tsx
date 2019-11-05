@@ -1,19 +1,21 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {getAsyncUsersList} from "../store/actions/actions";
+import {getAsyncUsersList, deleteAsyncUser} from "../store/actions/actions";
 import {connect} from "react-redux";
 
-interface State {
-    user123: any
-}
 
-class UserList extends React.Component<any, State> {
+class UserList extends React.Component<any> {
     constructor(props: any) {
         super(props);
     }
 
     componentDidMount(): void {
         this.props.getUsersList();
+    }
+
+    deleteUser =(id:any) => {
+        console.log(id);
+      this.props.deleteUser(id)
     }
 
     render() {
@@ -27,13 +29,17 @@ class UserList extends React.Component<any, State> {
             <div>
                 <ol>
                     {arrUsers.map((person: any) =>
-                        <Link key={person._id} to={`/users/${person._id}`}>
+                        <div key={person._id}>
+                            <Link to={`/users/${person._id}`}>
+                                <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} "{person.userName}"</li>
+                            </Link>
 
-                            <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} </li>
-
-                        </Link>)}
+                            <button onClick={()=>this.deleteUser(person._id)}>Delete User</button>
+                        </div>)}
                 </ol>
-                <button>Add User</button>
+                <Link to={'/users/add'}>
+                    <button>Add User</button>
+                </Link>
             </div>
         )
     }
@@ -49,6 +55,9 @@ const mapActionsToProps = (dispatch: any) => {
     return {
         getUsersList: () => {
             dispatch(getAsyncUsersList())
+        },
+        deleteUser: (id:any)=>{
+            dispatch(deleteAsyncUser(id))
         }
     };
 };

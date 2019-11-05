@@ -14,7 +14,7 @@ import {listReducer} from "./store/reducers/listReducer";
 export const rootReducer = combineReducers({
     userslist : listReducer,
     user: userReducer
-    });
+});
 
 
 

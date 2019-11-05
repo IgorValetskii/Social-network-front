@@ -1,4 +1,4 @@
-import {ACTION_GET_LIST_USERS} from "../userConstants/userConstants";
+import {ACTION_GET_LIST_USERS, ACTION_DELETE_USER, ACTION_ADD_USER} from "../userConstants/userConstants";
 
 const defaultState : any = {
     users : []
@@ -15,6 +15,16 @@ export const listReducer = (state = defaultState, action:any) => {
                 ...state,
                 users: action.payload
             };
+        case ACTION_ADD_USER:
+            return {
+                ...state,
+                // detailed: action.payload
+            };
+        case ACTION_DELETE_USER:
+            return {
+                ...state
+            };
+
         default:
             // console.log('state')
             return state

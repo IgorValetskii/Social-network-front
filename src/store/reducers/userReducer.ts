@@ -1,9 +1,7 @@
 import {ACTION_GET_DEFAULT_INFO, ACTION_UPDATE_USER} from "../userConstants/userConstants";
 
 const initialState: any = {
-        firstName : 'name',
-        lastName: 'surname',
-        userName: 'username',
+    detailed: ''
 };
 
 
@@ -15,14 +13,15 @@ export const userReducer = (state = initialState, action: any) => {
         case ACTION_GET_DEFAULT_INFO:
             return {
                 ...state,
-               defaultInfo : action.payload
+               detailed: action.payload
 
             };
         case ACTION_UPDATE_USER:
             return {
                 ...state,
-                newInfo: action.payload
+                detailed: action.payload
             };
+
 
         default:
             // console.log('state')
