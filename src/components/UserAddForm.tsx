@@ -53,4 +53,3 @@ const mapActionsToProps = (dispatch: any) => {
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(UserAddForm);
-

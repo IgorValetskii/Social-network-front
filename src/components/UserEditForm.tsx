@@ -1,8 +1,10 @@
 import React from "react";
 import {Form, Input} from "@rocketseat/unform";
 import {Link} from "react-router-dom";
-import {getAsyncUserInfo, updateAsyncUserInfo} from "../store/actions/actions";
 import {connect} from "react-redux";
+import { getAsyncUserInfo } from '../store/userEditForm/thunk';
+
+
 
 
 class UserEditForm extends React.Component<any> {
@@ -75,9 +77,7 @@ const mapActionsToProps = (dispatch: any) => {
         getUserInfo: (ID: any) => {
             dispatch(getAsyncUserInfo(ID))
         },
-        updateUserInfo: (ID: any, data: any) => {
-            dispatch(updateAsyncUserInfo(ID, data))
-        }
+
     };
 };
 

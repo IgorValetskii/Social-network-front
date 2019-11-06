@@ -5,15 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {createStore, applyMiddleware, combineReducers} from "redux";
-import {userReducer} from "./store/reducers/userReducer";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {listReducer} from "./store/reducers/listReducer";
+import usersListReducer from "./store/usersList/reducer";
 
 
 export const rootReducer = combineReducers({
-    userslist : listReducer,
-    user: userReducer
+    usersListReducer : usersListReducer,
 });
 
 

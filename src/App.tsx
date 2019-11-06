@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import UserList from "./components/UserList";
+import UserList from "./components/UsersList";
 import {BrowserRouter, Route, Link, Switch,Router} from "react-router-dom";
-import UserAddForm from "./components/UserAddForm";
+import {createBrowserHistory} from 'history';
 import UserEditForm from "./components/UserEditForm";
-import {createBrowserHistory} from 'history'
 const history = createBrowserHistory();
+
 
 
 class App extends React.Component {
@@ -20,9 +20,9 @@ class App extends React.Component {
                     </ul>
                     <hr/>
                     <Switch>
-                        <Route path="/users/add" exact component={UserAddForm}/>
                         <Route path="/users/:id" exact component={UserEditForm}/>
                         <Route path="/users" exact component={UserList}/>
+
                     </Switch>
                 </div>
             </Router>

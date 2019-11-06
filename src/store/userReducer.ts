@@ -13,7 +13,7 @@ export const userReducer = (state = initialState, action: any) => {
         case ACTION_GET_DEFAULT_INFO:
             return {
                 ...state,
-               detailed: action.payload
+                detailed: action.payload
 
             };
         case ACTION_UPDATE_USER:
