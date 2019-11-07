@@ -8,10 +8,12 @@ import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import usersListReducer from "./store/usersList/reducer";
+import userEditFormReducer from "./store/userEditForm/reducer";
 
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
+    userEditFormReducer: userEditFormReducer
 });
 
 

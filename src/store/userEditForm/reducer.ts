@@ -1,25 +1,42 @@
 import * as actions from "./actions";
 
 const initialState : any = {
-    users : [],
+    user : {},
     isLoading: false,
     error: ''
 };
 
-const usersListReducer = (state = initialState, {type, payload} : any) => {
+const userEditFormReducer = (state = initialState, {type, payload} : any) => {
     switch (type) {
-        case actions.GET_ALL_USERS_REQUEST:
+        case actions.GET_USER_INFO_REQUEST:
             return {
                 ...state,
                 isLoading: true
             };
-        case actions.GET_ALL_USERS_SUCCESS:
+        case actions.GET_USER_INFO_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                users: payload.users
+                user: payload.data
             };
-        case actions.GET_ALL_USERS_FAILURE:
+        case actions.GET_USER_INFO_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: payload.error
+            };
+        case actions.UPDATE_USER_INFO_REQUEST:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case actions.UPDATE_USER_INFO_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                user: payload.data
+            };
+        case actions.UPDATE_USER_INFO_FAILURE:
             return {
                 ...state,
                 isLoading: false,
@@ -31,4 +48,4 @@ const usersListReducer = (state = initialState, {type, payload} : any) => {
     }
 };
 
-export default usersListReducer;
+export default userEditFormReducer;

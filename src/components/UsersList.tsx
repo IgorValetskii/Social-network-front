@@ -14,8 +14,10 @@ class UsersList extends React.Component<any> {
     }
 
     deleteUser =(id:any) => {
-      this.props.deleteUser(id)
-    }
+      // this.props.deleteUser(id)
+        console.log(this.props)
+        console.log(id);
+    };
 
     render() {
         const { usersList, isLoading } = this.props;
@@ -46,7 +48,8 @@ class UsersList extends React.Component<any> {
 const mapStateToProps = (state: any) => (
     {
         usersList: state.usersListReducer.users,
-        isLoading: state.usersListReducer.isLoading
+        isLoading: state.usersListReducer.isLoading,
+        // error: state.usersListReducer.error
     }
 );
 

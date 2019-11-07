@@ -2,7 +2,8 @@ import React from "react";
 import {Form, Input} from "@rocketseat/unform";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import { getAsyncUserInfo } from '../store/userEditForm/thunk';
+import { getAsyncUserInfo,updateAsyncUserInfo } from '../store/userEditForm/thunk';
+
 
 
 
@@ -24,10 +25,10 @@ class UserEditForm extends React.Component<any> {
 
     handleSubmit = (data: any) => {
         // console.log(data);
-        // console.log(this.props.match.params.id)
+        console.log(this.props)
         const ID = this.props.match.params.id;
         this.props.updateUserInfo(ID, data);
-    }
+    };
 
     render() {
         // console.log(this.props);
@@ -42,6 +43,10 @@ class UserEditForm extends React.Component<any> {
         //     };
         // }
         const {firstName, lastName, userName} = this.props.user;
+        const {isUpdate} = this.props;
+        const {isLoading} = this.props;
+        // console.log(isUpdate)
+        // console.log(isLoading)
         return (
             <React.Fragment>
                 {firstName ? (
@@ -57,7 +62,7 @@ class UserEditForm extends React.Component<any> {
                         <p>Username:</p>
                         <Input name="userName"/>
 
-                        <button type="submit">Edit User</button>
+                        <button type="submit" >Edit User</button>
                         <Link to="/users">
                             <button>Return</button>
                         </Link>
@@ -69,13 +74,18 @@ class UserEditForm extends React.Component<any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    user: state.user.detailed
+    user: state.userEditFormReducer.user,
+    isLoading: state.userEditFormReducer.isLoading,
+    isUpdate: state.userEditFormReducer.isUpdate
 });
 
 const mapActionsToProps = (dispatch: any) => {
     return {
         getUserInfo: (ID: any) => {
             dispatch(getAsyncUserInfo(ID))
+        },
+        updateUserInfo: (ID: any , data:any) => {
+            dispatch(updateAsyncUserInfo(ID, data))
         },
 
     };
