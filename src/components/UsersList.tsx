@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { getAllUsers } from '../store/usersList/thunk';
+import { getAllUsers, deleteAsyncUser } from '../store/usersList/thunk';
 import {connect} from "react-redux";
 
 
@@ -14,7 +14,7 @@ class UsersList extends React.Component<any> {
     }
 
     deleteUser =(id:any) => {
-      // this.props.deleteUser(id)
+      this.props.deleteUser(id)
         console.log(this.props)
         console.log(id);
     };
@@ -57,6 +57,9 @@ const mapActionsToProps = (dispatch: any) => {
     return {
         getAllUsers: () => {
             dispatch(getAllUsers())
+        },
+        deleteUser: (ID:any) => {
+            dispatch(deleteAsyncUser(ID))
         }
     };
 };

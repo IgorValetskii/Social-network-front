@@ -10,43 +10,17 @@ import { getAsyncUserInfo,updateAsyncUserInfo } from '../store/userEditForm/thun
 
 class UserEditForm extends React.Component<any> {
     componentDidMount(): void {
-        // debugger;
-        // console.log(this.props.match.params.id);
         const ID = this.props.match.params.id;
         this.props.getUserInfo(ID);
     }
 
-    // componentDidUpdate(prevProps:any) {
-    //     // Популярный пример (не забудьте сравнить пропсы):
-    //     if (this.props.user.defaultInfo !== prevProps.user.defaultInfo) {
-    //         console.log('CРаботал DIDUPDATE')
-    //     }
-    // }
-
     handleSubmit = (data: any) => {
-        // console.log(data);
-        console.log(this.props)
         const ID = this.props.match.params.id;
         this.props.updateUserInfo(ID, data);
     };
 
     render() {
-        // console.log(this.props);
-        // console.log(this.props);
-        // console.log(this.props.user.defaultInfo);
-        // let initialData:any;
-        // if (this.props.user.defaultInfo){
-        //    initialData = {
-        //         name: this.props.user.defaultInfo.firstName ,
-        //         surname: this.props.user.defaultInfo.lastName ,
-        //         username: this.props.user.defaultInfo.userName
-        //     };
-        // }
         const {firstName, lastName, userName} = this.props.user;
-        const {isUpdate} = this.props;
-        const {isLoading} = this.props;
-        // console.log(isUpdate)
-        // console.log(isLoading)
         return (
             <React.Fragment>
                 {firstName ? (

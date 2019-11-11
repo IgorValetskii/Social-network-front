@@ -15,7 +15,6 @@ export const updateAsyncUserInfo  = (ID:any, body:any) => async (dispatch: any) 
     dispatch(actions.updateUserInfoRequest());
     try {
         const { data } = await axios.put(`http://localhost:3010/users/${ID}`, body);
-        console.log(data);
         dispatch(actions.updateUserInfoSuccess(data))
     } catch (e) {
         dispatch(actions.updateUserInfoFailure(e))

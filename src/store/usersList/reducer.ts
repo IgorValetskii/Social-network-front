@@ -25,6 +25,24 @@ const usersListReducer = (state = initialState, {type, payload} : any) => {
                 isLoading: false,
                 error: payload.error
             };
+        case actions.DELETE_USER_REQUEST:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case actions.DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                // users: payload.users
+            };
+        case actions.DELETE_USER_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: payload.error
+            };
+
 
         default:
             return state
