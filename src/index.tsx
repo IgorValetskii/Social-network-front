@@ -10,12 +10,14 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import usersListReducer from "./store/usersList/reducer";
 import userEditFormReducer from "./store/userEditForm/reducer";
 import userAddFormReducer from "./store/userAddForm/reducer";
-
+import {BrowserRouter} from "react-router-dom";
+import signInReducer from "./store/signIn/reducer";
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
     userEditFormReducer: userEditFormReducer,
-    userAddFormReducer : userAddFormReducer
+    userAddFormReducer : userAddFormReducer,
+    signInReducer: signInReducer
 });
 
 
@@ -23,7 +25,9 @@ export const rootReducer = combineReducers({
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(<Provider store={store}>
+    <BrowserRouter>
        <App/>
+       </BrowserRouter>
     </Provider>,
     document.getElementById('root'));
 
