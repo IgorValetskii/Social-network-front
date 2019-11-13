@@ -12,12 +12,14 @@ import userEditFormReducer from "./store/userEditForm/reducer";
 import userAddFormReducer from "./store/userAddForm/reducer";
 import {BrowserRouter} from "react-router-dom";
 import signInReducer from "./store/signIn/reducer";
+import profileReducer from "./store/profile/reducer"
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
     userEditFormReducer: userEditFormReducer,
     userAddFormReducer : userAddFormReducer,
-    signInReducer: signInReducer
+    signInReducer: signInReducer,
+    profileReducer: profileReducer,
 });
 
 

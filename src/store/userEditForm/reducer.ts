@@ -8,18 +8,18 @@ const initialState : any = {
 
 const userEditFormReducer = (state = initialState, {type, payload} : any) => {
     switch (type) {
-        case actions.GET_USER_INFO_REQUEST:
+        case actions.GET_USER_DEFAULT_INFO_REQUEST:
             return {
                 ...state,
                 isLoading: true
             };
-        case actions.GET_USER_INFO_SUCCESS:
+        case actions.GET_USER_DEFAULT_INFO_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 user: payload.data
             };
-        case actions.GET_USER_INFO_FAILURE:
+        case actions.GET_USER_DEFAULT_INFO_FAILURE:
             return {
                 ...state,
                 isLoading: false,

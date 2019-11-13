@@ -22,18 +22,20 @@ class App extends React.Component {
 
                 <div>
                     <h1>Welcome to Social network!</h1>
-                    <Link to="users/add"> <div>Sign up</div> </Link>
+                    <Link to="/registration"> <div>Sign up</div> </Link>
                     <hr/>
 
                     <Switch>
                         <Route exact path='/'> <Redirect to={'/signin'} /> </Route>
                         // @ts-ignore
                         <PublicRoute component={SignIn} path="/signin" exact   />
-                        <Route path="/users/add" exact component={UserAddForm}/>
+                        //@ts-ignore
+                        <PrivateRoute path="/profile" exact component={Profile}/>
+
+                        <Route path="/registration" exact component={UserAddForm}/>
                         {/*<Route path="/users/:id" exact component={UserEditForm}/>*/}
                         {/*<Route path="/users" exact component={UserList}/>*/}
-                        //@ts-ignore
-                        <PrivateRoute path="/users" exact component={Profile}/>
+
 
                     </Switch>
                 </div>
