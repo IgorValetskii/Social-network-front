@@ -13,7 +13,7 @@ const PrivateRoute = ({component: Component, authorized,...rest} : any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-    authorized: state.signInReducer.authorized,
+    authorized: state.authReducer.authorized,
 });
 
 

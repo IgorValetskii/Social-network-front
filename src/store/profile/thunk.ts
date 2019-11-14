@@ -1,5 +1,5 @@
 import * as actions from "../profile/actions";
-import instance from "../../auth/interceptor"
+import instance from "../../HelpersAuth/interceptor"
 
 export const getUserInfo  = () => async (dispatch: any) => {
     dispatch(actions.getUserInfoRequest());

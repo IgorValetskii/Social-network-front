@@ -8,18 +8,14 @@ import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import usersListReducer from "./store/usersList/reducer";
-import userEditFormReducer from "./store/userEditForm/reducer";
-import userAddFormReducer from "./store/userAddForm/reducer";
 import {BrowserRouter} from "react-router-dom";
-import signInReducer from "./store/signIn/reducer";
+import authReducer from "./store/auth/reducer";
 import profileReducer from "./store/profile/reducer"
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
-    userEditFormReducer: userEditFormReducer,
-    userAddFormReducer : userAddFormReducer,
-    signInReducer: signInReducer,
-    profileReducer: profileReducer,
+    authReducer: authReducer,
+    profileReducer: profileReducer
 });
 
 

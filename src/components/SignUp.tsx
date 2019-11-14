@@ -1,12 +1,12 @@
 import React from 'react';
 import {Form, Field} from 'react-final-form'
-import {signIn} from "../store/signIn/thunk";
+import {signUp} from "../store/auth/thunk";
 import {connect} from "react-redux";
 
-class SignIn extends React.Component <any> {
+class SignUp extends React.Component <any> {
 
     onSubmit = (values: any) => {
-        this.props.signIn(values)
+        this.props.signUp(values)
     };
 
     render() {
@@ -16,19 +16,37 @@ class SignIn extends React.Component <any> {
                 {
                     isLoading ? <div>Loading...</div> :
                         <React.Fragment>
-                            {error !== '' ? <div>Incorrect Username or password!</div> : null}
+                            {error !== '' ? <div>Registration Error!</div> : null}
                             <Form
                                 onSubmit={this.onSubmit}
                                 // initialValues={{ stooge: 'larry', employed: false }}
                                 render={({handleSubmit, form, submitting, pristine, values}) => (
                                     <form onSubmit={handleSubmit}>
                                         <div>
-                                            <label>User Name</label>
+                                            <label>First name</label>
+                                            <Field
+                                                name="firstName"
+                                                component="input"
+                                                type="text"
+                                                placeholder="First name"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label>Last name</label>
+                                            <Field
+                                                name="lastName"
+                                                component="input"
+                                                type="text"
+                                                placeholder="Last Name"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label>User name</label>
                                             <Field
                                                 name="userName"
                                                 component="input"
                                                 type="text"
-                                                placeholder="First Name"
+                                                placeholder="User name"
                                             />
                                         </div>
                                         <div>
@@ -37,7 +55,7 @@ class SignIn extends React.Component <any> {
                                                 name="password"
                                                 component="input"
                                                 type="text"
-                                                placeholder="Last Name"
+                                                placeholder="Password"
                                             />
                                         </div>
                                         <div className="buttons">
@@ -63,18 +81,18 @@ class SignIn extends React.Component <any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    authorized: state.signInReducer.authorized,
-    isLoading: state.signInReducer.isLoading,
-    error: state.signInReducer.error
+    user: state.authReducer.user,
+    isLoading: state.authReducer.isLoading,
+    error: state.authReducer.error
 });
 
 const mapActionsToProps = (dispatch: any) => {
     return {
-        signIn: (values: any) => {
-            dispatch(signIn(values))
+        signUp: (values: any) => {
+            dispatch(signUp(values))
         },
 
     };
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(SignIn);
+export default connect(mapStateToProps, mapActionsToProps)(SignUp);

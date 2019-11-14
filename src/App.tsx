@@ -3,12 +3,11 @@ import './App.css';
 import UserList from "./components/UsersList";
 import {BrowserRouter, Route, Link, Switch, Router, Redirect} from "react-router-dom";
 import {createBrowserHistory} from 'history';
-import UserEditForm from "./components/UserEditForm";
-import UserAddForm from "./components/UserAddForm";
 import SignIn from "./components/SignIn";
 import PrivateRoute from "./routes/privateRoute";
 import PublicRoute from "./routes/publicRoute";
 import Profile from "./components/Profile";
+import SignUp from "./components/SignUp";
 const history = createBrowserHistory();
 
 
@@ -31,8 +30,8 @@ class App extends React.Component {
                         <PublicRoute component={SignIn} path="/signin" exact   />
                         //@ts-ignore
                         <PrivateRoute path="/profile" exact component={Profile}/>
-
-                        <Route path="/registration" exact component={UserAddForm}/>
+                        //@ts-ignore
+                        <PublicRoute path="/registration" exact component={SignUp}/>
                         {/*<Route path="/users/:id" exact component={UserEditForm}/>*/}
                         {/*<Route path="/users" exact component={UserList}/>*/}
 

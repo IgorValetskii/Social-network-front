@@ -1,42 +1,46 @@
-import * as actions from "./actions";
+ import * as actions from "./actions";
 
-const initialState : any = {
-    user : {},
+const initialState: any = {
+    user: {},
     isLoading: false,
-    error: ''
+    error: '',
+    authorized: false
 };
 
-const userEditFormReducer = (state = initialState, {type, payload} : any) => {
+const authReducer = (state = initialState, {type, payload}: any) => {
     switch (type) {
-        case actions.GET_USER_DEFAULT_INFO_REQUEST:
+        case actions.ADD_USER_REQUEST:
             return {
                 ...state,
                 isLoading: true
             };
-        case actions.GET_USER_DEFAULT_INFO_SUCCESS:
+        case actions.ADD_USER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                user: payload.data
+                user: payload.data,
+                authorized: true
+                // user: [...state.user, payload.data ]
             };
-        case actions.GET_USER_DEFAULT_INFO_FAILURE:
+        case actions.ADD_USER_FAILURE:
             return {
                 ...state,
                 isLoading: false,
                 error: payload.error
             };
-        case actions.UPDATE_USER_INFO_REQUEST:
+        case actions.SIGN_IN_REQUEST:
             return {
                 ...state,
                 isLoading: true
             };
-        case actions.UPDATE_USER_INFO_SUCCESS:
+        case actions.SIGN_IN_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                user: payload.data
+                authorized: true
+                // user: [...state.user, payload.data ]
             };
-        case actions.UPDATE_USER_INFO_FAILURE:
+        case actions.SIGN_IN_FAILURE:
             return {
                 ...state,
                 isLoading: false,
@@ -48,4 +52,4 @@ const userEditFormReducer = (state = initialState, {type, payload} : any) => {
     }
 };
 
-export default userEditFormReducer;
+export default authReducer;

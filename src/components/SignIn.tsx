@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Field} from 'react-final-form'
-import {signIn} from "../store/signIn/thunk";
+import {signIn} from "../store/auth/thunk";
 import {connect} from "react-redux";
 
 
@@ -64,9 +64,9 @@ class SignIn extends React.Component <any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    authorized: state.signInReducer.authorized,
-    isLoading: state.signInReducer.isLoading,
-    error: state.signInReducer.error
+    authorized: state.authReducer.authorized,
+    isLoading: state.authReducer.isLoading,
+    error: state.authReducer.error
 });
 
 const mapActionsToProps = (dispatch: any) => {
