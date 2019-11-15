@@ -10,12 +10,10 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import usersListReducer from "./store/usersList/reducer";
 import {BrowserRouter} from "react-router-dom";
 import authReducer from "./store/auth/reducer";
-import profileReducer from "./store/profile/reducer"
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
     authReducer: authReducer,
-    profileReducer: profileReducer
 });
 
 

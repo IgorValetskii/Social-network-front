@@ -1,5 +1,5 @@
 import React from "react";
-import {getUserInfo} from "../store/profile/thunk";
+import {getUserInfo, logout} from "../store/auth/thunk";
 import {connect} from "react-redux";
 
 class Profile extends React.Component<any> {
@@ -8,12 +8,19 @@ class Profile extends React.Component<any> {
         this.props.getUserInfo();
     }
 
+    logout =()=>{
+      this.props.logout();
+    }
+
     render() {
         const {firstName, lastName} = this.props.user;
         return (
             <div>
                 {firstName ?
-                    (<div>Profile User {firstName} {lastName}</div>)
+                    (<div>
+                        <button onClick={this.logout}>Logout</button>
+                        <p>Profile User {firstName} {lastName}</p>
+                    </div>)
                     : <div>Loading... </div>}
             </div>
         )
@@ -21,8 +28,9 @@ class Profile extends React.Component<any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    user: state.profileReducer.user,
-    isLoading: state.profileReducer.isLoading,
+    user: state.authReducer.user,
+    isLoading: state.authReducer.isLoading,
+    authorized: state.authReducer.authorized
 });
 
 const mapActionsToProps = (dispatch: any) => {
@@ -30,6 +38,9 @@ const mapActionsToProps = (dispatch: any) => {
         getUserInfo: () => {
             dispatch(getUserInfo())
         },
+        logout: () => {
+            dispatch(logout())
+        }
 
     };
 };

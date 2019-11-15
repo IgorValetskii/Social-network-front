@@ -1,5 +1,6 @@
 import * as actions from "./actions";
 import axios from "axios";
+import instance from "../../HelpersAuth/interceptor";
 
 export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
     dispatch(actions.signInRequest());
@@ -8,8 +9,10 @@ export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
             userName,
             password
         });
+
         localStorage.setItem('access-token', data.token);
-        dispatch(actions.signInSuccess())
+
+        dispatch(actions.signInSuccess(data.userId))
     } catch (e) {
         dispatch(actions.signInFailure(e))
     }
@@ -26,6 +29,7 @@ export const signUp  = (data:any) => async (dispatch: any) => {
             userName,
             password
         });
+
         localStorage.setItem('access-token', res2.data.token);
 
         dispatch(actions.addUserSuccess(res.data));
@@ -33,3 +37,25 @@ export const signUp  = (data:any) => async (dispatch: any) => {
         dispatch(actions.addUserFailure(e))
     }
 };
+
+export const getUserInfo  = () => async (dispatch: any) => {
+    dispatch(actions.getUserInfoRequest());
+    try {
+        const { data } = await instance.get(`users`);
+        dispatch(actions.getUserInfoSuccess(data))
+    } catch (e) {
+        dispatch(actions.getUserInfoFailure(e))
+    }
+};
+
+export const logout  = () => async (dispatch: any) => {
+    dispatch(actions.logoutRequest());
+    try {
+        localStorage.removeItem('access-token');
+        dispatch(actions.logoutSuccess());
+    } catch (e) {
+        dispatch(actions.logoutFailure(e))
+    }
+};
+
+

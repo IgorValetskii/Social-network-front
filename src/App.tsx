@@ -18,26 +18,17 @@ class App extends React.Component {
 
 
         return (
-
-                <div>
-                    <h1>Welcome to Social network!</h1>
-                    <Link to="/registration"> <div>Sign up</div> </Link>
-                    <hr/>
-
                     <Switch>
                         <Route exact path='/'> <Redirect to={'/signin'} /> </Route>
                         // @ts-ignore
                         <PublicRoute component={SignIn} path="/signin" exact   />
                         //@ts-ignore
-                        <PrivateRoute path="/profile" exact component={Profile}/>
+                        <PrivateRoute path="/profile/:id" exact component={Profile}/>
                         //@ts-ignore
                         <PublicRoute path="/registration" exact component={SignUp}/>
                         {/*<Route path="/users/:id" exact component={UserEditForm}/>*/}
                         {/*<Route path="/users" exact component={UserList}/>*/}
-
-
                     </Switch>
-                </div>
         );
     }
 }

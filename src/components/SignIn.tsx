@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, Field} from 'react-final-form'
 import {signIn} from "../store/auth/thunk";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 
 class SignIn extends React.Component <any> {
@@ -14,6 +15,8 @@ class SignIn extends React.Component <any> {
         const {isLoading, error} = this.props;
         return (
             <div>
+                <h1>Welcome to Social network!</h1>
+                <Link to="/registration"> <div>Sign up</div> </Link>
                 {
                     isLoading ? <div>Loading...</div> :
                         <React.Fragment>
