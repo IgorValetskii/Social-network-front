@@ -22,10 +22,15 @@ class App extends React.Component {
                         <Route exact path='/'> <Redirect to={'/signin'} /> </Route>
                         // @ts-ignore
                         <PublicRoute component={SignIn} path="/signin" exact   />
+
                         //@ts-ignore
                         <PrivateRoute path="/profile/:id" exact component={Profile}/>
                         //@ts-ignore
+                        {/*<PrivateRoute path="/profile/:id/users" exact component={UserList}/>*/}
+                        //@ts-ignore
                         <PublicRoute path="/registration" exact component={SignUp}/>
+                        //@ts-ignore
+                        <PrivateRoute path='/:id/users' exact component={UserList}/>
                         {/*<Route path="/users/:id" exact component={UserEditForm}/>*/}
                         {/*<Route path="/users" exact component={UserList}/>*/}
                     </Switch>

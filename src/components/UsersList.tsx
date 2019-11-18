@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { getAllUsers, deleteAsyncUser } from '../store/usersList/thunk';
+import {getAllUsers, deleteAsyncUser, addToFriends} from '../store/usersList/thunk';
 import {connect} from "react-redux";
 
 
@@ -14,13 +14,19 @@ class UsersList extends React.Component<any> {
     }
 
     deleteUser =(id:any) => {
-      this.props.deleteUser(id)
-        console.log(this.props)
+      this.props.deleteUser(id);
+        console.log(this.props);
         console.log(id);
     };
 
+    addToFriend =(id:any)=>{
+        console.log(this.props.match.params.id);
+        const ownId = this.props.match.params.id;
+        this.props.addToFriend(id,ownId);
+    }
+
     render() {
-        const { usersList, isLoading } = this.props;
+        const { usersList, isLoading,friendRequest } = this.props;
         return (
             <div>
                 { isLoading ? <div>Loading</div> : (
@@ -33,6 +39,11 @@ class UsersList extends React.Component<any> {
                                     </Link>
 
                                     <button onClick={()=>this.deleteUser(person._id)}>Delete User</button>
+
+                                    <button onClick={()=>this.addToFriend(person._id)}>Add to friends</button>
+                                    {person.friendRequests[0] ? <div>Запрос в друзья отправлен</div> : null}
+
+
                                 </div>)}
                         </ol>
                         <Link to={'/users/add'}>
@@ -49,6 +60,7 @@ const mapStateToProps = (state: any) => (
     {
         usersList: state.usersListReducer.users,
         isLoading: state.usersListReducer.isLoading,
+        friendRequest: state.usersListReducer.friendRequest,
         // error: state.usersListReducer.error
     }
 );
@@ -58,9 +70,14 @@ const mapActionsToProps = (dispatch: any) => {
         getAllUsers: () => {
             dispatch(getAllUsers())
         },
+
+        addToFriend: (ID:any, ownId:any) => {
+            dispatch(addToFriends(ID,ownId))
+        },
+
         deleteUser: (ID:any) => {
             dispatch(deleteAsyncUser(ID))
-        }
+        },
     };
 };
 

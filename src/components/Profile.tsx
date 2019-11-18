@@ -1,6 +1,7 @@
 import React from "react";
 import {getUserInfo, logout} from "../store/auth/thunk";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 class Profile extends React.Component<any> {
 
@@ -10,7 +11,7 @@ class Profile extends React.Component<any> {
 
     logout =()=>{
       this.props.logout();
-    }
+    };
 
     render() {
         const {firstName, lastName} = this.props.user;
@@ -18,6 +19,11 @@ class Profile extends React.Component<any> {
             <div>
                 {firstName ?
                     (<div>
+
+                        <Link to={`/${this.props.userId}/users`}>
+                            <button>All users</button>
+                        </Link>
+
                         <button onClick={this.logout}>Logout</button>
                         <p>Profile User {firstName} {lastName}</p>
                     </div>)
@@ -30,7 +36,8 @@ class Profile extends React.Component<any> {
 const mapStateToProps = (state: any) => ({
     user: state.authReducer.user,
     isLoading: state.authReducer.isLoading,
-    authorized: state.authReducer.authorized
+    authorized: state.authReducer.authorized,
+    userId: state.authReducer.userId
 });
 
 const mapActionsToProps = (dispatch: any) => {
