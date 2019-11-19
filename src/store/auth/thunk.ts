@@ -13,6 +13,8 @@ export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
         localStorage.setItem('access-token', data.token);
 
         dispatch(actions.signInSuccess(data.userId))
+
+
     } catch (e) {
         dispatch(actions.signInFailure(e))
     }
@@ -40,12 +42,26 @@ export const signUp  = (data:any) => async (dispatch: any) => {
 
 export const getUserInfo  = () => async (dispatch: any) => {
     dispatch(actions.getUserInfoRequest());
+    dispatch(actions.getUsersRequest());
     try {
-        const { data } = await instance.get(`users`);
-        dispatch(actions.getUserInfoSuccess(data))
+        const res = await instance.get(`users`);
+        const data1 = res.data;
+        dispatch(actions.getUserInfoSuccess(data1))
+
+        const { data } = await instance.get(`users/all`);
+        dispatch(actions.getUsersSuccess(data))
     } catch (e) {
         dispatch(actions.getUserInfoFailure(e))
+        dispatch(actions.getUsersFailure(e))
     }
+
+    // dispatch(actions.getUsersRequest());
+    // try {
+    //     const { data } = await instance.get(`users/all`);
+    //     dispatch(actions.getUsersSuccess(data))
+    // } catch (e) {
+    //     dispatch(actions.getUsersFailure(e))
+    // }
 };
 
 export const logout  = () => async (dispatch: any) => {

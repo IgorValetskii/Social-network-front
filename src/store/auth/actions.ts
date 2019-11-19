@@ -1,3 +1,4 @@
+
 export const SIGN_IN_REQUEST = 'SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';
@@ -67,4 +68,22 @@ export const logoutSuccess = () => ({
 export const logoutFailure = (error: string) => ({
     type: LOGOUT_FAILURE,
     payload: {error}
+});
+
+export const GET_ALL_USERS_REQUEST = 'GET_ALL_USERS_REQUEST';
+export const GET_ALL_USERS_SUCCESS = 'GET_ALL_USERS_SUCCESS';
+export const GET_ALL_USERS_FAILURE = 'GET_ALL_USERS_FAILURE';
+
+export const getUsersRequest = () => ({
+    type: GET_ALL_USERS_REQUEST
+});
+
+export const getUsersSuccess = (users: any) => ({
+    type: GET_ALL_USERS_SUCCESS,
+    payload: {users}
+});
+
+export const getUsersFailure = (error: string) => ({
+    type: GET_ALL_USERS_SUCCESS,
+    payload: { error }
 });

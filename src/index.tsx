@@ -9,11 +9,15 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import usersListReducer from "./store/usersList/reducer";
 import {BrowserRouter} from "react-router-dom";
-import authReducer from "./store/auth/reducer";
+import signInReducer from "./store/auth/signInReducer";
+import registrationReducer from "./store/auth/registrationReducer";
+import profileReducer from "./store/auth/profileReducer";
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
-    authReducer: authReducer,
+    signInReducer : signInReducer,
+    registrationReducer : registrationReducer,
+    profileReducer: profileReducer
 });
 
 

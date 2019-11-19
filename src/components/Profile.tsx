@@ -24,6 +24,11 @@ class Profile extends React.Component<any> {
                             <button>All users</button>
                         </Link>
 
+                        <Link to={`/${this.props.userId}/friends`}>
+                            <button>Friends</button>
+                        </Link>
+
+
                         <button onClick={this.logout}>Logout</button>
                         <p>Profile User {firstName} {lastName}</p>
                     </div>)
@@ -34,10 +39,10 @@ class Profile extends React.Component<any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    user: state.authReducer.user,
-    isLoading: state.authReducer.isLoading,
-    authorized: state.authReducer.authorized,
-    userId: state.authReducer.userId
+    user: state.profileReducer.user,
+    isLoading: state.profileReducer.isLoading,
+    // authorized: state.authReducer.authorized,
+    userId: state.signInReducer.userId
 });
 
 const mapActionsToProps = (dispatch: any) => {

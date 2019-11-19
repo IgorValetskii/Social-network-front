@@ -13,8 +13,8 @@ const PublicRoute = ({component: Component, authorized, userId,...rest} : any) =
 };
 
 const mapStateToProps = (state: any) => ({
-    authorized: state.authReducer.authorized,
-    userId: state.authReducer.userId
+    authorized: state.signInReducer.authorized,
+    userId: state.signInReducer.userId
 });
 
 

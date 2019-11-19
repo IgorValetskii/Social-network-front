@@ -67,9 +67,9 @@ class SignIn extends React.Component <any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    authorized: state.authReducer.authorized,
-    isLoading: state.authReducer.isLoading,
-    error: state.authReducer.error
+    authorized: state.signInReducer.authorized,
+    isLoading: state.signInReducer.isLoading,
+    error: state.signInReducer.error
 });
 
 const mapActionsToProps = (dispatch: any) => {

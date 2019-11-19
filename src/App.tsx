@@ -8,6 +8,7 @@ import PrivateRoute from "./routes/privateRoute";
 import PublicRoute from "./routes/publicRoute";
 import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
+import FriendsList from "./components/FriendsList";
 const history = createBrowserHistory();
 
 
@@ -26,13 +27,11 @@ class App extends React.Component {
                         //@ts-ignore
                         <PrivateRoute path="/profile/:id" exact component={Profile}/>
                         //@ts-ignore
-                        {/*<PrivateRoute path="/profile/:id/users" exact component={UserList}/>*/}
-                        //@ts-ignore
                         <PublicRoute path="/registration" exact component={SignUp}/>
                         //@ts-ignore
                         <PrivateRoute path='/:id/users' exact component={UserList}/>
-                        {/*<Route path="/users/:id" exact component={UserEditForm}/>*/}
-                        {/*<Route path="/users" exact component={UserList}/>*/}
+                        //@ts-ignore
+                        <PrivateRoute path='/:id/friends' exact component={FriendsList}/>
                     </Switch>
         );
     }

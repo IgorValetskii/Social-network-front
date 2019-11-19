@@ -1,35 +1,14 @@
 import * as actions from "./actions";
 
 const initialState: any = {
-    user: {},
     isLoading: false,
     error: '',
-    userId: '',
     authorized: false,
-
+    userId: ''
 };
 
-const authReducer = (state = initialState, {type, payload}: any) => {
+const signInReducer = (state = initialState, {type, payload}: any) => {
     switch (type) {
-        case actions.ADD_USER_REQUEST:
-            return {
-                ...state,
-                isLoading: true
-            };
-        case actions.ADD_USER_SUCCESS:
-            return {
-                ...state,
-                isLoading: false,
-                user: payload.data,
-                userId: payload.data._id,
-                authorized: true
-            };
-        case actions.ADD_USER_FAILURE:
-            return {
-                ...state,
-                isLoading: false,
-                error: payload.error
-            };
         case actions.SIGN_IN_REQUEST:
             return {
                 ...state,
@@ -49,24 +28,6 @@ const authReducer = (state = initialState, {type, payload}: any) => {
                 isLoading: false,
                 error: payload.error
             };
-        case actions.GET_USER_INFO_REQUEST:
-            return {
-                ...state,
-                isLoading: true
-            };
-        case actions.GET_USER_INFO_SUCCESS:
-            return {
-                ...state,
-                isLoading: false,
-                user: payload.data,
-
-            };
-        case actions.GET_USER_INFO_FAILURE:
-            return {
-                ...state,
-                isLoading: false,
-                error: payload.error
-            };
         case actions.LOGOUT_REQUEST:
             return {
                 ...state,
@@ -75,7 +36,7 @@ const authReducer = (state = initialState, {type, payload}: any) => {
         case actions.LOGOUT_SUCCESS:
             return {
                 ...state,
-                user: {},
+                // user: {},
                 isLoading: false,
                 userId: '',
                 authorized: false,
@@ -93,4 +54,4 @@ const authReducer = (state = initialState, {type, payload}: any) => {
     }
 };
 
-export default authReducer;
+export default signInReducer;
