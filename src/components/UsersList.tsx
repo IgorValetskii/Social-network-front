@@ -2,9 +2,11 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {getAllUsers, addToFriends} from '../store/usersList/thunk';
 import {connect} from "react-redux";
+import {log} from "util";
 
 
 class UsersList extends React.Component<any> {
+    private updateUser: any;
     constructor(props: any) {
         super(props);
     }
@@ -25,20 +27,17 @@ class UsersList extends React.Component<any> {
 
         const {usersList} = this.props;
         let user = usersList.find((el:any) => el._id === id );
-        console.log(user);
-        let updateUser = user.friendRequests.push(ownId)
+
+        this.updateUser = user;
+        this.updateUser.friendRequests.push(ownId);
+        this.forceUpdate();
     };
 
     render() {
-        console.log(this.props);
         const {id} = this.props.match.params;
 
-        const { usersList, isLoading, updateUser} = this.props;
-        // console.log(usersList);
-        // console.log(usersList[0]);
-
+        const { usersList, isLoading} = this.props;
         let user = usersList.find((el:any) => el._id === id );
-        // user.friendRequests.push();
         return (
             <div>
                 { isLoading ? <div>Loading</div> : (
@@ -50,14 +49,12 @@ class UsersList extends React.Component<any> {
                                         <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} "{person.userName}"</li>
                                     </Link>
 
-                                    {/*<button onClick={()=>this.deleteUser(person._id)}>Delete User</button>*/}
+                                    <button onClick={()=>this.addToFriend(person._id)} disabled={ person._id === id || person.friendRequests.some((el:any) =>el === id)} >
+                                        Add to friends
+                                    </button>
 
-                                    {/*<button onClick={()=>this.addToFriend(person._id)} disabled={ person._id === id || person.friendRequests.some((el:any) =>el === id)} >Add to friends</button>*/}
-                                    <button onClick={()=>this.addToFriend(person._id)} >Add to friends</button>
-                                   {/*{person.friendRequests.some((el:any) =>el === id) ? <div>Запрос в друзья отправлен</div>  : null }*/}
+                                   {person.friendRequests.some((el:any) =>el === id) ? <div>Запрос в друзья отправлен</div>  : null }
 
-                                    {updateUser ? <div>Запрос в друзья отправлен</div>  : null }
-                                    {console.log(updateUser)}
                                 </div>)}
                         </ol>
                         {/*<Link to={'/users/add'}>*/}

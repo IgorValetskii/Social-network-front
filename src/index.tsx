@@ -12,12 +12,14 @@ import {BrowserRouter} from "react-router-dom";
 import signInReducer from "./store/auth/signInReducer";
 import registrationReducer from "./store/auth/registrationReducer";
 import profileReducer from "./store/auth/profileReducer";
+import incomingReqReducer from "./store/incomingRequests/incomingReqReducer";
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
     signInReducer : signInReducer,
     registrationReducer : registrationReducer,
-    profileReducer: profileReducer
+    profileReducer: profileReducer,
+    incomingReqReducer: incomingReqReducer
 });
 
 

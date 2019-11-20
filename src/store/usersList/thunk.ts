@@ -16,13 +16,13 @@ export const addToFriends  = (ID:any,ownId:any) => async (dispatch: any) => {
     dispatch(actions.addToFriendsRequest());
     try {
         const body = {
-            friendRequests: ownId
+            incomingFriendReq: ownId
         };
 
         const res = await instance.put(`users/all/${ID}`,body);
 
         const body2 = {
-            outgoingFriendRequests: ID
+            outgoingFriendReq: ID
         };
 
         const res2 = await instance.put(`users/all/${ownId}`,body2);
