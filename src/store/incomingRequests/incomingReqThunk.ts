@@ -5,21 +5,21 @@ export const addToFriends  = (ID:any,ownId:any) => async (dispatch: any) => {
     dispatch(actions.addToFriendsRequest());
     try {
 
-        // захожу в Мане и забираю айдишку с массива FrendReq  и вставляю в массив Friends
+        // захожу в получателя запроса на добавления в друзья и забираю айдишку с массива FrendReq  и вставляю в массив Friends
 
-        //сначала вставлю айдишку в массив Friends
         const body2 = {
-            friends: ID
+            userId: ID
         };
 
-        const res2 = await instance.put(`users/all/${ownId}`,body2);
+        const res2 = await instance.put(`users/friendschange/${ownId}`,body2);
+        // в res2.data лежит обновленный юзер
 
-        //
+        // захожу в отправителя запроса на добваления в друзья
         const body = {
-            incomingFriendReq: ownId
+            userId: ownId
         };
 
-        const res = await instance.put(`users/all/${ID}`,body);
+        const res = await instance.put(`users/friendschange/${ID}`,body);
 
         dispatch(actions.addToFriendsSuccess());
 
