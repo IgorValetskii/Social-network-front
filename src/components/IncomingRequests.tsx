@@ -7,12 +7,7 @@ class IncomingRequests extends React.Component<any> {
         super(props);
     }
 
-    componentDidMount(): void {
-        const id = this.props.id;
-        this.props.getAllUsers();
-    }
-
-    addToFriend =(id:any)=>{
+    addToFriends =(id:any)=>{
 
         const ownId = this.props.id;
         this.props.addToFriend(id,ownId);
@@ -37,8 +32,7 @@ class IncomingRequests extends React.Component<any> {
                 {usersList.map((person:any)=> person.outgoingFriendRequests.some((el:any) =>el === this.props.id) ?
                 <div key={person._id}>
 
-                    <p>{person.firstName} {person.lastName} <button onClick={()=>this.addToFriend(person._id)}>Accept</button>      <button>Decline</button></p>
-
+                    <p>{person.firstName} {person.lastName} <button onClick={()=>this.addToFriends(person._id)}>Accept</button>      <button>Decline</button></p>
 
                 </div> : null)}
 
@@ -61,7 +55,7 @@ const mapStateToProps = (state: any) => (
 const mapActionsToProps = (dispatch: any) => {
     return {
 
-        addToFriend: (ID:any, ownId:any) => {
+        addToFriends: (ID:any, ownId:any) => {
             dispatch(addToFriends(ID,ownId))
         },
     };

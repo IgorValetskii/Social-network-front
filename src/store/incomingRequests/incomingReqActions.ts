@@ -1,18 +1,17 @@
-export const GET_FRIEND_REQ_REQUEST = 'GET_FRIEND_REQ_REQUEST';
-export const GET_FRIEND_REQ_SUCCESS = 'GET_FRIEND_REQ_SUCCESS';
-export const GET_FRIEND_REQ_FAILURE = 'GET_FRIEND_REQ_FAILURE';
+export const ADD_TO_FRIENDS_REQUEST = 'ADD_TO_FRIENDS_REQUEST';
+export const ADD_TO_FRIENDS_SUCCESS = 'ADD_TO_FRIENDS_SUCCESS';
+export const ADD_TO_FRIENDS_FAILURE = 'ADD_TO_FRIENDS_FAILURE';
 
 
-export const getFriendReqRequest = () => ({
-    type: GET_FRIEND_REQ_REQUEST
+export const addToFriendsRequest = () => ({
+    type: ADD_TO_FRIENDS_REQUEST
 });
 
-export const getFriendReqSuccess = (data: any) => ({
-    type: GET_FRIEND_REQ_SUCCESS,
-    payload: {data}
+export const addToFriendsSuccess = () => ({
+    type: ADD_TO_FRIENDS_SUCCESS,
 });
 
-export const getFriendReqFailure = (error: string) => ({
-    type: GET_FRIEND_REQ_FAILURE,
+export const addToFriendsFailure = (error: string) => ({
+    type: ADD_TO_FRIENDS_FAILURE,
     payload: { error }
 });

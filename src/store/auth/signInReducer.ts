@@ -1,10 +1,11 @@
 import * as actions from "./actions";
 
 const initialState: any = {
+    user:{},
+    authorized: false,
+    userId: '',
     isLoading: false,
     error: '',
-    authorized: false,
-    userId: ''
 };
 
 const signInReducer = (state = initialState, {type, payload}: any) => {
@@ -18,7 +19,8 @@ const signInReducer = (state = initialState, {type, payload}: any) => {
             return {
                 ...state,
                 isLoading: false,
-                userId: payload.userId,
+                user: payload.data.user,
+                userId: payload.data.userId,
                 authorized: true,
 
             };

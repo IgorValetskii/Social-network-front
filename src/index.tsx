@@ -7,19 +7,21 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
-import usersListReducer from "./store/usersList/reducer";
+import usersListReducer from "./store/usersList/usersListReducer";
 import {BrowserRouter} from "react-router-dom";
 import signInReducer from "./store/auth/signInReducer";
 import registrationReducer from "./store/auth/registrationReducer";
-import profileReducer from "./store/auth/profileReducer";
+import profileReducer from "./store/profile/profileReducer";
 import incomingReqReducer from "./store/incomingRequests/incomingReqReducer";
+import friendsListReducer from "./store/friendsList/friendsListReducer";
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
     signInReducer : signInReducer,
     registrationReducer : registrationReducer,
     profileReducer: profileReducer,
-    incomingReqReducer: incomingReqReducer
+    incomingReqReducer: incomingReqReducer,
+    friendsListReducer: friendsListReducer
 });
 
 

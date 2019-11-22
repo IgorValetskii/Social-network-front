@@ -8,18 +8,18 @@ const initialState : any = {
 
 const incomingReqReducer = (state = initialState, {type, payload} : any) => {
     switch (type) {
-        case actions.GET_FRIEND_REQ_REQUEST:
+        case actions.ADD_TO_FRIENDS_REQUEST:
             return {
                 ...state,
                 isLoading: true
             };
-        case actions.GET_FRIEND_REQ_SUCCESS:
+        case actions.ADD_TO_FRIENDS_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 friends: payload.users
             };
-        case actions.GET_FRIEND_REQ_FAILURE:
+        case actions.ADD_TO_FRIENDS_FAILURE:
             return {
                 ...state,
                 isLoading: false,

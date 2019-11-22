@@ -1,18 +1,17 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {getAllUsers, addToFriends} from '../store/usersList/thunk';
+import {getAllUsers,addToFriends} from '../store/usersList/usersListThunk';
 import {connect} from "react-redux";
-import {log} from "util";
 
 
 class UsersList extends React.Component<any> {
-    private updateUser: any;
+    // private updateUser: any;
     constructor(props: any) {
         super(props);
     }
 
     componentDidMount(): void {
-        // this.props.getAllUsers();
+        this.props.getAllUsers();
     }
 
     deleteUser =(id:any) => {
@@ -25,19 +24,19 @@ class UsersList extends React.Component<any> {
         const ownId = this.props.match.params.id;
         this.props.addToFriend(id,ownId);
 
-        const {usersList} = this.props;
-        let user = usersList.find((el:any) => el._id === id );
+        // const {usersList} = this.props;
+        // let user = usersList.find((el:any) => el._id === id );
 
-        this.updateUser = user;
-        this.updateUser.friendRequests.push(ownId);
-        this.forceUpdate();
+        // this.updateUser = user;
+        // this.updateUser.friendRequests.push(ownId);
+        // this.forceUpdate();
     };
 
     render() {
         const {id} = this.props.match.params;
-
+        //
         const { usersList, isLoading} = this.props;
-        let user = usersList.find((el:any) => el._id === id );
+        // let user = usersList.find((el:any) => el._id === id );
         return (
             <div>
                 { isLoading ? <div>Loading</div> : (
@@ -69,18 +68,18 @@ class UsersList extends React.Component<any> {
 
 const mapStateToProps = (state: any) => (
     {
-        usersList: state.profileReducer.users,
-        isLoading: state.profileReducer.isLoading,
-        friendRequest: state.usersListReducer.friendRequest,
+        usersList: state.usersListReducer.users,
+        isLoading: state.usersListReducer.isLoading,
+        // friendRequest: state.usersListReducer.friendRequest,
         // error: state.usersListReducer.error
     }
 );
 
 const mapActionsToProps = (dispatch: any) => {
     return {
-        // getAllUsers: () => {
-        //     dispatch(getAllUsers())
-        // },
+        getAllUsers: () => {
+            dispatch(getAllUsers())
+        },
 
         addToFriend: (ID:any, ownId:any) => {
             dispatch(addToFriends(ID,ownId))

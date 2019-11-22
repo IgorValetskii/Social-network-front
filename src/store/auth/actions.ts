@@ -7,9 +7,9 @@ export const signInRequest = () => ({
     type: SIGN_IN_REQUEST
 });
 
-export const signInSuccess = (userId:any) => ({
+export const signInSuccess = (data:any) => ({
     type: SIGN_IN_SUCCESS,
-    payload: {userId}
+    payload: {data}
 });
 
 export const signInFailure = (error: string) => ({
@@ -35,23 +35,6 @@ export const addUserFailure = (error: string) => ({
     payload: {error}
 });
 
-export const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
-export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
-export const GET_USER_INFO_FAILURE = 'GET_USER_INFO_FAILURE';
-
-export const getUserInfoRequest = () => ({
-    type: GET_USER_INFO_REQUEST
-});
-
-export const getUserInfoSuccess = (data: any) => ({
-    type: GET_USER_INFO_SUCCESS,
-    payload: {data}
-});
-
-export const getUserInfoFailure = (error: string) => ({
-    type: GET_USER_INFO_FAILURE,
-    payload: {error}
-});
 
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
@@ -68,22 +51,4 @@ export const logoutSuccess = () => ({
 export const logoutFailure = (error: string) => ({
     type: LOGOUT_FAILURE,
     payload: {error}
-});
-
-export const GET_ALL_USERS_REQUEST = 'GET_ALL_USERS_REQUEST';
-export const GET_ALL_USERS_SUCCESS = 'GET_ALL_USERS_SUCCESS';
-export const GET_ALL_USERS_FAILURE = 'GET_ALL_USERS_FAILURE';
-
-export const getUsersRequest = () => ({
-    type: GET_ALL_USERS_REQUEST
-});
-
-export const getUsersSuccess = (users: any) => ({
-    type: GET_ALL_USERS_SUCCESS,
-    payload: {users}
-});
-
-export const getUsersFailure = (error: string) => ({
-    type: GET_ALL_USERS_SUCCESS,
-    payload: { error }
 });

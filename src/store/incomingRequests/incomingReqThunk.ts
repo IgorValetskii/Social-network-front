@@ -9,9 +9,9 @@ export const addToFriends  = (ID:any,ownId:any) => async (dispatch: any) => {
 
         const body2 = {
             userId: ID
-        };
+         };
 
-        const res2 = await instance.put(`users/friendschange/${ownId}`,body2);
+        const res2 = await instance.put(`users/incomingfriendschange/${ownId}`,body2);
         // в res2.data лежит обновленный юзер
 
         // захожу в отправителя запроса на добваления в друзья
@@ -19,7 +19,8 @@ export const addToFriends  = (ID:any,ownId:any) => async (dispatch: any) => {
             userId: ownId
         };
 
-        const res = await instance.put(`users/friendschange/${ID}`,body);
+        const res = await instance.put(`users/outgoingfriendschange/${ID}`,body);
+        // в res.data лежит обновленный юзер
 
         dispatch(actions.addToFriendsSuccess());
 

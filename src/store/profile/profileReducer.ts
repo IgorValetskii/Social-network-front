@@ -1,10 +1,10 @@
-import * as actions from "./actions";
+import * as actions from "./profileActions";
 
 const initialState: any = {
     user: {},
     isLoading: false,
     error: '',
-    users:[]
+
 };
 
 const profileReducer = (state = initialState, {type, payload}: any) => {
@@ -22,23 +22,6 @@ const profileReducer = (state = initialState, {type, payload}: any) => {
 
             };
         case actions.GET_USER_INFO_FAILURE:
-            return {
-                ...state,
-                isLoading: false,
-                error: payload.error
-            };
-        case actions.GET_ALL_USERS_REQUEST:
-            return {
-                ...state,
-                isLoading: true
-            };
-        case actions.GET_ALL_USERS_SUCCESS:
-            return {
-                ...state,
-                isLoading: false,
-                users: payload.users
-            };
-        case actions.GET_ALL_USERS_FAILURE:
             return {
                 ...state,
                 isLoading: false,

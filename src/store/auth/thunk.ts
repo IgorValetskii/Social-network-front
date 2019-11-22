@@ -5,14 +5,13 @@ import instance from "../../HelpersAuth/interceptor";
 export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
     dispatch(actions.signInRequest());
     try {
-        const {data} = await axios.post(`http://localhost:3010/api/login`, {
-            userName,
-            password
-        });
+        console.log('1232131231')
+        const res = await axios.post(`http://localhost:3010/api/login`, {userName,password});
 
-        localStorage.setItem('access-token', data.token);
+        console.log(res.data);
+        localStorage.setItem('access-token', res.data.token);
 
-        dispatch(actions.signInSuccess(data.userId))
+        dispatch(actions.signInSuccess(res.data))
 
 
     } catch (e) {
@@ -38,30 +37,6 @@ export const signUp  = (data:any) => async (dispatch: any) => {
     } catch (e) {
         dispatch(actions.addUserFailure(e))
     }
-};
-
-export const getUserInfo  = () => async (dispatch: any) => {
-    dispatch(actions.getUserInfoRequest());
-    dispatch(actions.getUsersRequest());
-    try {
-        const res = await instance.get(`users`);
-        const data1 = res.data;
-        dispatch(actions.getUserInfoSuccess(data1))
-
-        const { data } = await instance.get(`users/all`);
-        dispatch(actions.getUsersSuccess(data))
-    } catch (e) {
-        dispatch(actions.getUserInfoFailure(e))
-        dispatch(actions.getUsersFailure(e))
-    }
-
-    // dispatch(actions.getUsersRequest());
-    // try {
-    //     const { data } = await instance.get(`users/all`);
-    //     dispatch(actions.getUsersSuccess(data))
-    // } catch (e) {
-    //     dispatch(actions.getUsersFailure(e))
-    // }
 };
 
 export const logout  = () => async (dispatch: any) => {
