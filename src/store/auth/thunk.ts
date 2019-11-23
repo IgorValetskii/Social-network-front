@@ -5,10 +5,8 @@ import instance from "../../HelpersAuth/interceptor";
 export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
     dispatch(actions.signInRequest());
     try {
-        console.log('1232131231')
         const res = await axios.post(`http://localhost:3010/api/login`, {userName,password});
 
-        console.log(res.data);
         localStorage.setItem('access-token', res.data.token);
 
         dispatch(actions.signInSuccess(res.data))

@@ -70,6 +70,7 @@ const mapStateToProps = (state: any) => (
     {
         usersList: state.usersListReducer.users,
         isLoading: state.usersListReducer.isLoading,
+
         // friendRequest: state.usersListReducer.friendRequest,
         // error: state.usersListReducer.error
     }
@@ -81,8 +82,8 @@ const mapActionsToProps = (dispatch: any) => {
             dispatch(getAllUsers())
         },
 
-        addToFriend: (ID:any, ownId:any) => {
-            dispatch(addToFriends(ID,ownId))
+        addToFriend: (id:any, ownId:any) => {
+            dispatch(addToFriends(id,ownId))
         },
 
         // deleteUser: (ID:any) => {
