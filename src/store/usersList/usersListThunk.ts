@@ -20,8 +20,11 @@ export const addToFriends  = (id:any,ownId:any) => async (dispatch: any) => {
         const body = {id,ownId};
         const res = await instance.put(`users/friendreq`,body);
         console.log(res.status);
+        console.log(res.status === 200);
         if(res.status === 200){
+
             dispatch(actions.addToFriendsSuccess())
+
         }
         // const body = {
         //     incomingFriendReq: ownId
