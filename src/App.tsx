@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import UserList from "./components/UsersList";
+import UserList from "./components/UsersList/UsersList";
 import {BrowserRouter, Route, Link, Switch, Router, Redirect} from "react-router-dom";
 import {createBrowserHistory} from 'history';
-import SignIn from "./components/SignIn";
+import SignIn from "./components/SignIn/SignIn";
 import PrivateRoute from "./routes/privateRoute";
 import PublicRoute from "./routes/publicRoute";
-import Profile from "./components/Profile";
-import SignUp from "./components/SignUp";
-import FriendsList from "./components/FriendsList";
+import Profile from "./components/Profile/Profile";
+import SignUp from "./components/SignUp/SignUp";
+import FriendsList from "./components/FriendsList/FriendsList";
 const history = createBrowserHistory();
 
 
@@ -16,7 +16,6 @@ const history = createBrowserHistory();
 
 class App extends React.Component {
     render() {
-
 
         return (
                     <Switch>

@@ -17,19 +17,19 @@ export const getUsersFailure = (error: string) => ({
     payload: { error }
 });
 
-export const ADD_TO_FRIENDS_REQUEST = 'ADD_TO_FRIENDS_REQUEST';
-export const ADD_TO_FRIENDS_SUCCESS = 'ADD_TO_FRIENDS_SUCCESS';
-export const ADD_TO_FRIENDS_FAILURE = 'ADD_TO_FRIENDS_FAILURE';
+export const SEND_FRIEND_REQ_REQUEST = 'SEND_FRIEND_REQ_REQUEST';
+export const SEND_FRIEND_REQ_SUCCESS = 'SEND_FRIEND_REQ_SUCCESS';
+export const SEND_FRIEND_REQ_FAILURE = 'SEND_FRIEND_REQ_FAILURE';
 
-export const addToFriendsRequest = () => ({
-    type: ADD_TO_FRIENDS_REQUEST
+export const sendFriendReqRequest = () => ({
+    type: SEND_FRIEND_REQ_REQUEST
 });
 
-export const addToFriendsSuccess = () => ({
-    type: ADD_TO_FRIENDS_SUCCESS,
+export const sendFriendReqSuccess = () => ({
+    type: SEND_FRIEND_REQ_SUCCESS,
 });
 
-export const addToFriendsFailure = (error: string) => ({
-    type: ADD_TO_FRIENDS_FAILURE,
+export const sendFriendReqFailure = (error: string) => ({
+    type: SEND_FRIEND_REQ_FAILURE,
     payload: { error }
 });

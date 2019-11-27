@@ -1,4 +1,4 @@
-import * as actions from "./actions";
+import * as actions from "./signUpActions";
 
 const initialState: any = {
     user:{},
@@ -8,7 +8,7 @@ const initialState: any = {
     userId: ''
 };
 
-const registrationReducer = (state = initialState, {type, payload}: any) => {
+const signUpReducer = (state = initialState, {type, payload}: any) => {
     switch (type) {
         case actions.ADD_USER_REQUEST:
             return {
@@ -35,4 +35,4 @@ const registrationReducer = (state = initialState, {type, payload}: any) => {
     }
 };
 
-export default registrationReducer;
+export default signUpReducer;

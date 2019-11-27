@@ -1,11 +1,10 @@
 import * as actions from './usersListActions';
-import instance from "../../HelpersAuth/interceptor";
+import instance from "../../interceptors/AuthInterceptor";
 
 export const getAllUsers  = () => async (dispatch: any) => {
     dispatch(actions.getUsersRequest());
     try {
         const { data } = await instance.get(`users/all`);
-        // console.log(data);
         dispatch(actions.getUsersSuccess(data))
     } catch (e) {
         dispatch(actions.getUsersFailure(e))
@@ -13,8 +12,8 @@ export const getAllUsers  = () => async (dispatch: any) => {
 };
 
 
-export const addToFriends  = (id:any,ownId:any) => async (dispatch: any) => {
-    dispatch(actions.addToFriendsRequest());
+export const sendFriendReq  = (id:any,ownId:any) => async (dispatch: any) => {
+    dispatch(actions.sendFriendReqRequest());
     try {
 
         const body = {id,ownId};
@@ -23,27 +22,11 @@ export const addToFriends  = (id:any,ownId:any) => async (dispatch: any) => {
         console.log(res.status === 200);
         if(res.status === 200){
 
-            dispatch(actions.addToFriendsSuccess())
+            dispatch(actions.sendFriendReqSuccess())
 
         }
-        // const body = {
-        //     incomingFriendReq: ownId
-        // };
-        //
-        // const res = await instance.put(`users/all/${ID}`,body);
-        //
-        // const body2 = {
-        //     outgoingFriendReq: ID
-        // };
-        //
-        // const res2 = await instance.put(`users/all/${ownId}`,body2);
-        //
-        // dispatch(actions.addToFriendsSuccess());
-
-        // const { data } = await instance.get(`users/all`);
-        // dispatch(actions.getUsersSuccess(data))
     } catch (e) {
-        dispatch(actions.addToFriendsFailure(e))
+        dispatch(actions.sendFriendReqFailure(e))
     }
 };
 

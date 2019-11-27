@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Field} from 'react-final-form'
-import {signUp} from "../store/auth/thunk";
+import {signUp} from "../../store/auth/signUp/signUpThunk";
 import {connect} from "react-redux";
 
 class SignUp extends React.Component <any> {
@@ -81,9 +81,9 @@ class SignUp extends React.Component <any> {
 }
 
 const mapStateToProps = (state: any) => ({
-    user: state.authReducer.user,
-    isLoading: state.authReducer.isLoading,
-    error: state.authReducer.error
+    user: state.registrationReducer.user,
+    isLoading: state.registrationReducer.isLoading,
+    error: state.registrationReducer.error
 });
 
 const mapActionsToProps = (dispatch: any) => {

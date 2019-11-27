@@ -1,5 +1,5 @@
 import * as actions from './incomingReqActions';
-import instance from "../../HelpersAuth/interceptor";
+import instance from "../../interceptors/AuthInterceptor";
 
 export const addToFriends  = (ID:any,ownId:any) => async (dispatch: any) => {
     dispatch(actions.addToFriendsRequest());

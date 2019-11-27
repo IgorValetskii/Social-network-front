@@ -1,9 +1,9 @@
 import * as actions from "./friendListActions";
 
 const initialState : any = {
-    incomingRequests:[],
-    outgoingRequests:[],
-    friends : [],
+    incomingRequests:'',
+    outgoingRequests:'',
+    friends : '',
     isLoading: false,
     error: '',
 };
@@ -19,9 +19,9 @@ const friendsListReducer = (state = initialState, {type, payload} : any) => {
             return {
                 ...state,
                 isLoading: false,
-                incomingRequests: payload.friendRequests,
-                outgoingRequests: payload.outgoingFriendRequests,
-                friends: payload.friends,
+                incomingRequests: payload.data.friendRequests,
+                outgoingRequests: payload.data.outgoingFriendRequests,
+                friends: payload.data.friends,
             };
         case actions.GET_USER_FRIENDS_FAILURE:
             return {

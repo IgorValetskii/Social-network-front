@@ -1,6 +1,5 @@
-import * as actions from "./actions";
+import * as actions from "../signIn/SignInActions";
 import axios from "axios";
-import instance from "../../HelpersAuth/interceptor";
 
 export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
     dispatch(actions.signInRequest());
@@ -17,26 +16,6 @@ export const signIn  = ({userName, password}:any) => async (dispatch: any) => {
     }
 };
 
-export const signUp  = (data:any) => async (dispatch: any) => {
-    dispatch(actions.addUserRequest());
-    try {
-        const res = await axios.post(`http://localhost:3010/users`, data);
-
-        const {userName,password} = res.data;
-
-        const res2 = await axios.post(`http://localhost:3010/api/login`, {
-            userName,
-            password
-        });
-
-        localStorage.setItem('access-token', res2.data.token);
-
-        dispatch(actions.addUserSuccess(res.data));
-    } catch (e) {
-        dispatch(actions.addUserFailure(e))
-    }
-};
-
 export const logout  = () => async (dispatch: any) => {
     dispatch(actions.logoutRequest());
     try {
@@ -46,5 +25,3 @@ export const logout  = () => async (dispatch: any) => {
         dispatch(actions.logoutFailure(e))
     }
 };
-
-

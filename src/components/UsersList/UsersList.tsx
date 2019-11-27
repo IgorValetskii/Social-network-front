@@ -1,11 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {getAllUsers,addToFriends} from '../store/usersList/usersListThunk';
+import {getAllUsers,sendFriendReq} from '../../store/usersList/usersListThunk';
 import {connect} from "react-redux";
 
 
 class UsersList extends React.Component<any> {
-    // private updateUser: any;
     constructor(props: any) {
         super(props);
     }
@@ -14,29 +13,17 @@ class UsersList extends React.Component<any> {
         this.props.getAllUsers();
     }
 
-    deleteUser =(id:any) => {
-      this.props.deleteUser(id);
-        console.log(this.props);
-        console.log(id);
-    };
 
-    addToFriend =(id:any)=>{
+    sendFriendReq =(id:any)=>{
         const ownId = this.props.match.params.id;
         this.props.addToFriend(id,ownId);
-
-        // const {usersList} = this.props;
-        // let user = usersList.find((el:any) => el._id === id );
-
-        // this.updateUser = user;
-        // this.updateUser.friendRequests.push(ownId);
-        // this.forceUpdate();
     };
+
 
     render() {
         const {id} = this.props.match.params;
-        //
         const { usersList, isLoading} = this.props;
-        // let user = usersList.find((el:any) => el._id === id );
+
         return (
             <div>
                 { isLoading ? <div>Loading</div> : (
@@ -48,7 +35,7 @@ class UsersList extends React.Component<any> {
                                         <li className="list-group-item list-group-item-action">{person.firstName} {person.lastName} "{person.userName}"</li>
                                     </Link>
 
-                                    <button onClick={()=>this.addToFriend(person._id)} disabled={ person._id === id || person.friendRequests.some((el:any) =>el === id)} >
+                                    <button onClick={()=>this.sendFriendReq(person._id)} disabled={ person._id === id || person.friendRequests.some((el:any) =>el === id)} >
                                         Add to friends
                                     </button>
 
@@ -56,9 +43,7 @@ class UsersList extends React.Component<any> {
 
                                 </div>)}
                         </ol>
-                        {/*<Link to={'/users/add'}>*/}
-                        {/*    <button>Add User</button>*/}
-                        {/*</Link>*/}
+
                     </React.Fragment>
                 )}
             </div>
@@ -70,9 +55,6 @@ const mapStateToProps = (state: any) => (
     {
         usersList: state.usersListReducer.users,
         isLoading: state.usersListReducer.isLoading,
-
-        // friendRequest: state.usersListReducer.friendRequest,
-        // error: state.usersListReducer.error
     }
 );
 
@@ -82,13 +64,9 @@ const mapActionsToProps = (dispatch: any) => {
             dispatch(getAllUsers())
         },
 
-        addToFriend: (id:any, ownId:any) => {
-            dispatch(addToFriends(id,ownId))
+        sendFriendReq: (id:any, ownId:any) => {
+            dispatch(sendFriendReq(id,ownId))
         },
-
-        // deleteUser: (ID:any) => {
-        //     dispatch(deleteAsyncUser(ID))
-        // },
     };
 };
 
@@ -96,4 +74,3 @@ const mapActionsToProps = (dispatch: any) => {
 export default connect(mapStateToProps, mapActionsToProps)(UsersList);
 
 
-// export default UsersList;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Field} from 'react-final-form'
-import {signIn} from "../store/auth/thunk";
+import {signIn} from "../../store/auth/signIn/signInThunk";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -23,7 +23,6 @@ class SignIn extends React.Component <any> {
                             {error !== '' ? <div>Incorrect Username or password!</div> : null}
                             <Form
                                 onSubmit={this.onSubmit}
-                                // initialValues={{ stooge: 'larry', employed: false }}
                                 render={({handleSubmit, form, submitting, pristine, values}) => (
                                     <form onSubmit={handleSubmit}>
                                         <div>

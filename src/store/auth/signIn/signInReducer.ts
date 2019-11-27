@@ -1,4 +1,4 @@
-import * as actions from "./actions";
+import * as actions from "../signIn/SignInActions";
 
 const initialState: any = {
     user:{},
@@ -38,7 +38,6 @@ const signInReducer = (state = initialState, {type, payload}: any) => {
         case actions.LOGOUT_SUCCESS:
             return {
                 ...state,
-                // user: {},
                 isLoading: false,
                 userId: '',
                 authorized: false,

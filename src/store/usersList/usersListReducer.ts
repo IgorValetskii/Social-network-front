@@ -5,9 +5,6 @@ const initialState : any = {
     isLoading: false,
     error: '',
     addFriendReq: false
-    // authorized: true,
-    // userId: '',
-    // friendRequest: false
 };
 
 const usersListReducer = (state = initialState, {type, payload} : any) => {
@@ -29,19 +26,18 @@ const usersListReducer = (state = initialState, {type, payload} : any) => {
                 isLoading: false,
                 error: payload.error
             };
-        case actions.ADD_TO_FRIENDS_REQUEST:
+        case actions.SEND_FRIEND_REQ_REQUEST:
             return {
                 ...state,
                 isLoading: true
             };
-        case actions.ADD_TO_FRIENDS_SUCCESS:
+        case actions.SEND_FRIEND_REQ_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 addFriendReq: true
-                // friendRequest: true
             };
-        case actions.ADD_TO_FRIENDS_FAILURE:
+        case actions.SEND_FRIEND_REQ_FAILURE:
             return {
                 ...state,
                 isLoading: false,

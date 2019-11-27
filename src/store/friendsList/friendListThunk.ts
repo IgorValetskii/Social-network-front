@@ -1,5 +1,5 @@
 import * as actions from './friendListActions'
-import instance from "../../HelpersAuth/interceptor";
+import instance from "../../interceptors/AuthInterceptor";
 
 
 export const getUserFriends  = (userId:any) => async (dispatch: any) => {
@@ -7,7 +7,8 @@ export const getUserFriends  = (userId:any) => async (dispatch: any) => {
     try {
 
         const res = await instance.get(`users/${userId}`);
-        console.log(res.data);
+
+
 
         dispatch(actions.getUserFriendsSuccess(res.data));
 

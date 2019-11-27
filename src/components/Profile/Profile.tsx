@@ -1,14 +1,9 @@
 import React from "react";
-import {getUserInfo} from "../store/profile/profileThunk";
-import {logout} from "../store/auth/thunk";
+import {logout} from "../../store/auth/signIn/signInThunk";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 class Profile extends React.Component<any> {
-
-    // componentDidMount(): void {
-    //     this.props.getUserInfo();
-    // }
 
     logout =()=>{
       this.props.logout();
@@ -42,16 +37,11 @@ class Profile extends React.Component<any> {
 const mapStateToProps = (state: any) => ({
     user: state.signInReducer.user,
     userId: state.signInReducer.userId
-    // isLoading: state.profileReducer.isLoading,
-    // // authorized: state.authReducer.authorized,
 
 });
 
 const mapActionsToProps = (dispatch: any) => {
     return {
-        getUserInfo: () => {
-            dispatch(getUserInfo())
-        },
         logout: () => {
             dispatch(logout())
         }
