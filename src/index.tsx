@@ -11,14 +11,12 @@ import usersListReducer from "./store/usersList/usersListReducer";
 import {BrowserRouter} from "react-router-dom";
 import signInReducer from "./store/auth/signIn/signInReducer";
 import signUpReducer from "./store/auth/signUp/signUpReducer";
-import incomingReqReducer from "./store/incomingRequests/incomingReqReducer";
 import friendsListReducer from "./store/friendsList/friendsListReducer";
 
 export const rootReducer = combineReducers({
     usersListReducer : usersListReducer,
     signInReducer : signInReducer,
-    registrationReducer : signUpReducer,
-    incomingReqReducer: incomingReqReducer,
+    signUpReducer : signUpReducer,
     friendsListReducer: friendsListReducer
 });
 

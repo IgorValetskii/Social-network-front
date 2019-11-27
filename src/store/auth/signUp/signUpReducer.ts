@@ -4,7 +4,7 @@ const initialState: any = {
     user:{},
     isLoading: false,
     error: '',
-    authorized: false,
+    authorized1: false,
     userId: ''
 };
 
@@ -21,7 +21,7 @@ const signUpReducer = (state = initialState, {type, payload}: any) => {
                 isLoading: false,
                 user: payload.data,
                 userId: payload.data._id,
-                authorized: true
+                authorized1: true
             };
         case actions.ADD_USER_FAILURE:
             return {
